@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "557350460303",
+    "project_id": "novelty-app-de786",
+    "storage_bucket": "novelty-app-de786.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:557350460303:android:653228cdb708bfc7c389fa",
+        "android_client_info": {
+          "package_name": "com.novlety.novelty_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "557350460303-tdqj8mcn5pdiiq9jnfecluscsrcq2g8u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd9pNYGl2YAB3x4OgBBFZBLiZtCKUmvMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "557350460303-tdqj8mcn5pdiiq9jnfecluscsrcq2g8u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
