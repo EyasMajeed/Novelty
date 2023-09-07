@@ -12,8 +12,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  //final user = FirebaseAuth.instance.currentUser!;
-
   Widget getTimeLine() {
     double heightCon = 80.0;
     return Container(
@@ -32,7 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   new Text(
                     'استلام الابن',
-                    style: TextStyle(color: Colors.black, fontSize: 20.0),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                        fontFamily: 'Cairo'),
                   )
                 ],
               ),
@@ -51,7 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   new Text(
                     'وصل ابنك المدرسة',
-                    style: TextStyle(color: Colors.black, fontSize: 20.0),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                        fontFamily: 'Cairo'),
                   )
                 ],
               ),
@@ -70,7 +74,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   new Text(
                     'دخل ابنك الحافلة',
-                    style: TextStyle(color: Colors.black, fontSize: 20.0),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                        fontFamily: 'Cairo'),
                   )
                 ],
               ),
@@ -89,7 +96,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   new Text(
                     'اقترب ابنك من المنزل',
-                    style: TextStyle(color: Colors.black, fontSize: 20.0),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                        fontFamily: 'Cairo'),
                   )
                 ],
               ),
@@ -108,7 +118,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   new Text(
                     'وصل ابنك المنزل',
-                    style: TextStyle(color: Colors.black, fontSize: 20.0),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                        fontFamily: 'Cairo'),
                   )
                 ],
               ),
@@ -122,11 +135,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget getDriverInfo() {
     return Container(
       child: ListTile(
-        title: Text('سائق الحافلة'),
+        title: Text(
+          'سائق الحافلة',
+          style: TextStyle(fontFamily: 'Cairo'),
+        ),
         subtitle: Text(
           'محمد منير',
           style: TextStyle(
-              fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.black),
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontFamily: 'Cairo'),
         ),
         leading: Container(
           width: 75.0,
@@ -148,21 +167,26 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Center(child: Text('تتبع الابن')),
-        leading: MaterialButton(
-          onPressed: () {
-          FirebaseAuth.instance.signOut();
-        },
-        color: Colors.amber,
-        child: Text('تسجيل الخروج'),
+        centerTitle: true,
+        title: Text(
+          'تتبع الابن',
+          style: TextStyle(fontFamily: 'Cairo'),
         ),
+        leading: IconButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
+            icon: Icon(Icons.logout)),
       ),
       body: ListView(
         children: <Widget>[
           Padding(padding: EdgeInsets.only(top: 30.0)),
           new Text(
             'الوقت المقدر لوصول الابن ',
-            style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Cairo'),
             textAlign: TextAlign.center,
           ),
           new Text(

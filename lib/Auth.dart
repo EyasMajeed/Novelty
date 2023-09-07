@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:novelty_app/screens/homescreen.dart';
 import 'package:novelty_app/screens/loginscreen.dart';
 
-
 class Auth extends StatelessWidget {
   const Auth({super.key});
 
@@ -12,14 +11,14 @@ class Auth extends StatelessWidget {
     return Scaffold(
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
-        builder:(context, snapshot) {
-          if(snapshot.hasData){
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
             return HomeScreen();
-          }else{
+          } else {
             return LoginScreen();
           }
         },
-       ),
+      ),
     );
   }
 }
