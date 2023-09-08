@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:novelty_app/alerts/global_method.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -14,6 +15,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final _emailCtrlr = TextEditingController();
   final _passCtrlr = TextEditingController();
   final _ConfirmpassCtrlr = TextEditingController();
+  GlobalMethods _globalMethods = GlobalMethods();
 
   Future Sign_up() async {
     if (passwordConfirmed()) {

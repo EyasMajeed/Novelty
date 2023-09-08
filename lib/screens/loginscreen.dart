@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:novelty_app/alerts/global_method.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -13,20 +14,22 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _emailCtrlr = TextEditingController();
   final _passCtrlr = TextEditingController();
+  GlobalMethods _globalMethods = GlobalMethods();
 
   Future Sign_in() async {
     try {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailCtrlr.text.trim(),
-        password: _passCtrlr.text.trim()
-      );
-    // TODO: check role form drvers collection 
-    // TODO: redirect the user to the correct page
-    Navigator.of(context).pushReplacementNamed('/');
-} on FirebaseAuthException catch (e) {
-  // Encountered an error
-  // TODO: Show an alert for the user 
-}
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailCtrlr.text.trim(), password: _passCtrlr.text.trim());
+      Navigator.of(context).pushReplacementNamed('/');
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        _globalMethods.Notfound(context);
+      } else if (e.code == 'wrong-password') {
+        _globalMethods.WrongPassword(context);
+      } else {
+        _globalMethods.OtherSignin(context);
+      }
+    }
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailCtrlr.text.trim(), password: _passCtrlr.text.trim());
   }
@@ -61,12 +64,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 20,
               ),
 
-              //title
-              // Text(
-              //   'SIGN IN',
-              //   style: GoogleFonts.robotoCondensed(
-              //       fontSize: 40, fontWeight: FontWeight.bold),
-              // ),
               SizedBox(
                 height: 30,
               ),
