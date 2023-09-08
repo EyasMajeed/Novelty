@@ -16,12 +16,16 @@ class _SignupScreenState extends State<SignupScreen> {
 
   Future Sign_up() async {
     if (passwordConfirmed()) {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailCtrlr.text.trim(),
-        password: _passCtrlr.text.trim(),
-      );
-
-      Navigator.of(context).pushNamed('/');
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailCtrlr.text.trim(),
+          password: _passCtrlr.text.trim(),
+        );
+        Navigator.of(context).pushReplacementNamed('/');
+      } catch (e) {
+        //TODO: throw alert in the app
+        print(e);
+      }
     }
   }
 

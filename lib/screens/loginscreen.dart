@@ -15,6 +15,16 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passCtrlr = TextEditingController();
 
   Future Sign_in() async {
+    try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailCtrlr.text.trim(),
+        password: _passCtrlr.text.trim()
+      );
+    Navigator.of(context).pushReplacementNamed('/');
+} on FirebaseAuthException catch (e) {
+  // Encountered an error
+  // TODO: Show an alert for the user 
+}
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailCtrlr.text.trim(), password: _passCtrlr.text.trim());
   }

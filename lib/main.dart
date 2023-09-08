@@ -7,7 +7,14 @@ import 'Auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: "AIzaSyBd9pNYGl2YAB3x4OgBBFZBLiZtCKUmvMo",
+      appId: "novelty-app-de786",
+      messagingSenderId: "XXX",
+      projectId: "novelty-app-de786",
+    ),
+  );
   runApp(
     MyApp(),
   );
