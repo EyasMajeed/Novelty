@@ -39,32 +39,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) { 
-//     return MaterialApp(
-//       home: Scaffold(
-//         appBar: AppBar(
-//           title: Center(
-//             child: Text('Novelty'),
-//           ),
-//           backgroundColor: Colors.yellow[600],
-//         ),
-//         body: Align(
-//           alignment: Alignment.centerRight,
-//           child: Text(
-//             ': أدخل عدد الركاب',
-//             textAlign: TextAlign.right,
-            
-//             style: TextStyle(
-//               fontSize: 25.0,
-//               fontWeight: FontWeight.bold,
-//               fontFamily: 'Cairo',
-//             ),
-//           ),
-//         ),  
-//       ),
-//     );
-//   }
-// }
