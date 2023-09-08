@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -16,17 +17,34 @@ class _SignupScreenState extends State<SignupScreen> {
 
   Future Sign_up() async {
     if (passwordConfirmed()) {
-      try {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailCtrlr.text.trim(),
-          password: _passCtrlr.text.trim(),
-        );
-        Navigator.of(context).pushReplacementNamed('/');
-      } catch (e) {
-        //TODO: throw alert in the app
-        print(e);
-      }
+      // try {
+      //   await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      //     email: _emailCtrlr.text.trim(),
+      //     password: _passCtrlr.text.trim(),
+      //   );
+      //   Navigator.of(context).pushReplacementNamed('/');
+      // } catch (e) {
+      //   //TODO: throw alert in the app
+      //   print(e);
+      // }
+
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: _emailCtrlr.text.trim(), password: _passCtrlr.text.trim())
+          // TODO input for selecting user role
+          .then((value) => {postDetailsToFirestore(_emailCtrlr.text.trim(), "parent")})
+          .catchError((e) {
+            // TODO: throw an alert for the user when error occours 
+            print(e.toString());
+          })
+          .then((value) => Navigator.of(context).pushReplacementNamed('/'));
     }
+  }
+
+  postDetailsToFirestore(String email, String rool) async {
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    var user = FirebaseAuth.instance.currentUser;
+    CollectionReference ref = FirebaseFirestore.instance.collection('users');
+    ref.doc(user!.uid).set({'email': email, 'role': rool});
   }
 
   bool passwordConfirmed() {

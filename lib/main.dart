@@ -3,7 +3,10 @@ import 'package:novelty_app/screens/homescreen.dart';
 import 'package:novelty_app/screens/loginscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:novelty_app/screens/signupscreen.dart';
+import 'package:novelty_app/user_provider.dart';
 import 'Auth.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +19,10 @@ void main() async {
     ),
   );
   runApp(
-    MyApp(),
+    ChangeNotifierProvider(
+      create: (context) => UserProvider(),
+      child: const MyApp(),
+    ),
   );
 }
 

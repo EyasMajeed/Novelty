@@ -20,6 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
         email: _emailCtrlr.text.trim(),
         password: _passCtrlr.text.trim()
       );
+    // TODO: check role form drvers collection 
+    // TODO: redirect the user to the correct page
     Navigator.of(context).pushReplacementNamed('/');
 } on FirebaseAuthException catch (e) {
   // Encountered an error
