@@ -41,26 +41,38 @@ class _DriverScreenState extends State<DriverScreen> {
                 SizedBox(
                   height: 50.0,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: Text(
-                        ' :تعديل العدد',
-                        style: TextStyle(fontSize: 20, fontFamily: 'Cairo'),
+                Text(
+                  ': تعديل العدد ',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontFamily: 'Cairo',
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.grey.shade300,
+                        borderRadius: BorderRadius.circular(12)),
+                    width: 60.0,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(
+                              fontFamily: 'Cairo',
+                            )),
                       ),
                     ),
-                    GestureDetector(
-                      child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(12)),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                          )),
-                    ),
-                  ],
-                )
+                  ),
+                ),
+                
               ],
             ),
           ),
