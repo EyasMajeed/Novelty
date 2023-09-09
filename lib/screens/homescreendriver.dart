@@ -8,8 +8,49 @@ class DriverScreen extends StatefulWidget {
 }
 
 class _DriverScreenState extends State<DriverScreen> {
-  bool isButton1Pressed = false;
-  bool isButton2Pressed = false;
+  
+ Widget isDriver() {
+    // Get the current user
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      // User is signed in
+      String userUid = user.uid;
+      return Text('Current User UID: $userUid');
+    } else {
+      // User is signed out
+      return Text('No user is signed in.');
+    }
+  }
+
+  DatabaseReference _databaseReference = FirebaseDatabase.instance.reference();
+
+  void initState() {
+    super.initState();
+
+    // Call the function to retrieve the number of students in trips
+    retrieveNumberOfStudentsInTrips();
+  }
+
+  void retrieveNumberOfStudentsInTrips() {
+  _databaseReference.child('trips').once().then((snapshot) {
+    // Access the trips data
+    Map<dynamic, dynamic> tripsData = snapshot.value;
+
+    // Initialize a variable to count students in trips
+    int numberOfStudentsInTrips = 0;
+
+    // Loop through the trips data
+    tripsData.forEach((key, value) {
+      if (value != null && value['students'] != null) {
+        // Count the number of students in the trip
+        numberOfStudentsInTrips += (value['students'] as Map).length - 1;
+      }
+    });
+
+    // Print the number of students in trips
+    print("Number of students in trips: $numberOfStudentsInTrips");
+  });
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
