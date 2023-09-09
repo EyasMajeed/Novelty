@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
+import 'package:novelty_app/global_method.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,6 +13,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  
+  
+  final int _TimeLineCtlr = 1;
+
   Widget getTimeLine() {
     double heightCon = 80.0;
     return Container(
@@ -22,7 +27,24 @@ class _HomeScreenState extends State<HomeScreen> {
           height: heightCon,
           child: TimelineTile(
             lineXY: 0.2,
-            indicatorStyle: IndicatorStyle(height: 1.0),
+            beforeLineStyle: _TimeLineCtlr >= 1
+                ? LineStyle(
+                    color: Colors.amber.shade500,
+                  )
+                : LineStyle(
+                    color: Colors.grey,
+                  ),
+            indicatorStyle: _TimeLineCtlr >= 1
+                ? IndicatorStyle(
+                    height: 1.0,
+                    color: Colors.amber,
+                    iconStyle: IconStyle(
+                      iconData: Icons.check,
+                    ))
+                : IndicatorStyle(
+                    height: 1.0,
+                    color: Colors.grey,
+                  ),
             alignment: TimelineAlign.manual,
             endChild: Container(
               padding: EdgeInsets.all(10.0),
@@ -44,7 +66,24 @@ class _HomeScreenState extends State<HomeScreen> {
           height: heightCon,
           child: TimelineTile(
             lineXY: 0.2,
-            indicatorStyle: IndicatorStyle(height: 1.0),
+            beforeLineStyle: _TimeLineCtlr >= 2
+                ? LineStyle(
+                    color: Colors.amber.shade500,
+                  )
+                : LineStyle(
+                    color: Colors.grey,
+                  ),
+            indicatorStyle: _TimeLineCtlr >= 2
+                ? IndicatorStyle(
+                    height: 1.0,
+                    color: Colors.amber,
+                    iconStyle: IconStyle(
+                      iconData: Icons.check,
+                    ))
+                : IndicatorStyle(
+                    height: 1.0,
+                    color: Colors.grey,
+                  ),
             alignment: TimelineAlign.manual,
             endChild: Container(
               padding: EdgeInsets.all(10.0),
@@ -66,7 +105,24 @@ class _HomeScreenState extends State<HomeScreen> {
           height: heightCon,
           child: TimelineTile(
             lineXY: 0.2,
-            indicatorStyle: IndicatorStyle(height: 1.0),
+            beforeLineStyle: _TimeLineCtlr >= 3
+                ? LineStyle(
+                    color: Colors.amber.shade500,
+                  )
+                : LineStyle(
+                    color: Colors.grey,
+                  ),
+            indicatorStyle: _TimeLineCtlr >= 3
+                ? IndicatorStyle(
+                    height: 1.0,
+                    color: Colors.amber,
+                    iconStyle: IconStyle(
+                      iconData: Icons.check,
+                    ))
+                : IndicatorStyle(
+                    height: 1.0,
+                    color: Colors.grey,
+                  ),
             alignment: TimelineAlign.manual,
             endChild: Container(
               padding: EdgeInsets.all(10.0),
@@ -88,7 +144,24 @@ class _HomeScreenState extends State<HomeScreen> {
           height: heightCon,
           child: TimelineTile(
             lineXY: 0.2,
-            indicatorStyle: IndicatorStyle(height: 1.0),
+            beforeLineStyle: _TimeLineCtlr >= 4
+                ? LineStyle(
+                    color: Colors.amber.shade500,
+                  )
+                : LineStyle(
+                    color: Colors.grey,
+                  ),
+            indicatorStyle: _TimeLineCtlr >= 4
+                ? IndicatorStyle(
+                    height: 1.0,
+                    color: Colors.amber,
+                    iconStyle: IconStyle(
+                      iconData: Icons.check,
+                    ))
+                : IndicatorStyle(
+                    height: 1.0,
+                    color: Colors.grey,
+                  ),
             alignment: TimelineAlign.manual,
             endChild: Container(
               padding: EdgeInsets.all(10.0),
@@ -110,7 +183,24 @@ class _HomeScreenState extends State<HomeScreen> {
           height: heightCon,
           child: TimelineTile(
             lineXY: 0.2,
-            indicatorStyle: IndicatorStyle(height: 1.0),
+            beforeLineStyle: _TimeLineCtlr >= 5
+                ? LineStyle(
+                    color: Colors.amber.shade500,
+                  )
+                : LineStyle(
+                    color: Colors.grey,
+                  ),
+            indicatorStyle: _TimeLineCtlr >= 5
+                ? IndicatorStyle(
+                    height: 1.0,
+                    color: Colors.amber,
+                    iconStyle: IconStyle(
+                      iconData: Icons.check,
+                    ))
+                : IndicatorStyle(
+                    height: 1.0,
+                    color: Colors.grey,
+                  ),
             alignment: TimelineAlign.manual,
             endChild: Container(
               padding: EdgeInsets.all(10.0),
@@ -177,6 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
               FirebaseAuth.instance.signOut();
             },
             icon: Icon(Icons.logout)),
+        backgroundColor: Colors.amber.shade500,
       ),
       body: ListView(
         children: <Widget>[
