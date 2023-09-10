@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:novelty_app/alerts/global_method.dart';
+import 'package:novelty_app/global_method.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -33,7 +34,7 @@ class _SignupScreenState extends State<SignupScreen> {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: _emailCtrlr.text.trim(), password: _passCtrlr.text.trim())
           // TODO input for selecting user role
-          .then((value) => {postDetailsToFirestore(_emailCtrlr.text.trim(), "parent")})
+          .then((value) => {postToDB(_emailCtrlr.text.trim(), "parent", value.user!.uid)})
           .catchError((e) {
             // TODO: throw an alert for the user when error occours 
             print(e.toString());
@@ -42,11 +43,18 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
-  postDetailsToFirestore(String email, String rool) async {
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-    var user = FirebaseAuth.instance.currentUser;
-    CollectionReference ref = FirebaseFirestore.instance.collection('users');
-    ref.doc(user!.uid).set({'email': email, 'role': rool});
+  postToDB(String email, String role, String uid) async {
+    DatabaseReference users = FirebaseDatabase.instance.ref('users');
+    Map<String, dynamic> userData = {
+    'email': email,
+    'role': role
+  };
+    // Specify the custom user ID when inserting data
+    users.child(uid).set(userData).then((_) {
+      print('User inserted successfully');
+    }).catchError((error) {
+      print('Error inserting user: $error');
+    });
   }
 
   bool passwordConfirmed() {

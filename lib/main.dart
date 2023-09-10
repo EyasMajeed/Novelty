@@ -16,6 +16,7 @@ void main() async {
       appId: "novelty-app-de786",
       messagingSenderId: "XXX",
       projectId: "novelty-app-de786",
+      databaseURL: "https://novelty-app-de786-default-rtdb.asia-southeast1.firebasedatabase.app",
     ),
   );
   runApp(

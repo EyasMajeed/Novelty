@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:novelty_app/alerts/global_method.dart';
+import 'package:novelty_app/global_method.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

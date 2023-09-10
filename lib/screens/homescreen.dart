@@ -1,6 +1,7 @@
 // import 'dart:ffi';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 import 'package:novelty_app/global_method.dart';
@@ -15,8 +16,39 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   
   
-  final int _TimeLineCtlr = 1;
-
+  final int _TimeLineCtlr = 5;
+  void initState(){
+    super.initState();
+    print("Hello");
+    DatabaseReference starCountRef = FirebaseDatabase.instance.ref().child('Students');
+    starCountRef.once().then((myVal) {
+      var dat = myVal.snapshot.value.runtimeType;
+      print("main: $dat");
+      myVal.snapshot.children.map((element) {
+        var k = element.key;
+        print("the element: $k");
+        int driver = element.child('status').value as int;
+        print("The parent: $driver");
+      });
+    });
+    //   setState(() {
+        
+    //   data = myVal.snapshot.children.length;
+    //   });
+    //   _numController = new TextEditingController(text: data.toString());
+    //   print("the data $data");
+    // });
+      
+    // starCountRef.onValue.listen((DatabaseEvent event) {
+    //   if (event.snapshot.value != null) {
+    //   int numberOfChildren = event.snapshot.children.length;
+    //   setState(() {
+        
+    //   data = numberOfChildren;
+    //   });
+    //   _numController = new TextEditingController(text: data.toString());
+    //   print("recent data: $data");
+    } 
   Widget getTimeLine() {
     double heightCon = 80.0;
     return Container(
@@ -265,6 +297,7 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: IconButton(
             onPressed: () {
               FirebaseAuth.instance.signOut();
+              Navigator.of(context).pushReplacementNamed('/');
             },
             icon: Icon(Icons.logout)),
         backgroundColor: Colors.amber.shade500,
